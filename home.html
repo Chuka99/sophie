@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stylegod • Shop</title>
+  <meta name="description" content="Wears • Hair • Skincare • Makeup — Checkout via WhatsApp (₦ only)" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <span class="dot" aria-hidden="true"></span>
+      
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="#home" aria-label="Go home">
+        <span class="logo__mark"> <img src="assets/images/logo.jpg" width="40px" height="40px"></span>
+
+        <span class="logo__text">
+          <strong>Stylegod</strong>
+          <small>Beauty & Luxury</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Main">
+        <a href="#categories">Categories</a>
+        <a href="#shop">Shop</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="iconbtn" href="https://www.instagram.com/sophia_de_stylegod/" target="_blank" rel="noreferrer">IG</a>
+        <a class="iconbtn" href="https://www.tiktok.com/@sophia_stylegod" target="_blank" rel="noreferrer">TT</a>
+
+        <button class="cartbtn" id="openCartBtn" type="button" aria-haspopup="dialog" aria-controls="cartDrawer">
+          Cart <span class="pillCount" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="hero">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <p class="kicker">WEARS • HAIR • SKINCARE • MAKEUP</p>
+        <h1>Simple shopping. Soft luxury. Checkout on WhatsApp.</h1>
+        <p class="lead">
+          Browse categories, add to cart, and checkout with a WhatsApp message.
+          <strong>Payment in Naira (₦) only.</strong>
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#shop">Shop now</a>
+          <a class="btn btn--ghost" href="#categories">Browse categories</a>
+        </div>
+      </div>
+
+      <div class="hero__card" aria-label="Featured products">
+        <div class="hero__cardTop">
+          <h3>New Arrivals</h3>
+          <p>Fresh picks across all categories.</p>
+        </div>
+        <div class="hero__cardMini" id="miniGrid"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Categories -->
+  <section id="categories" class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>Browse categories</h2>
+        <p>Tap a category to filter products.</p>
+      </div>
+
+      <div class="catGrid">
+        <button class="catCard" data-filter="wears" type="button">          
+          <span class="catCard__bg catCard__bg--wears"></span>
+          <span class="catCard__body">
+            <strong>Wears</strong>
+            <small>Dresses • Sets • Jumpsuits</small>
+          </span>
+        </button>
+
+        <button class="catCard" data-filter="hair" type="button">
+      
+          <span class="catCard__bg catCard__bg--hair" ></span>
+          <span class="catCard__body">
+            <strong>Hair</strong>
+            <small>Wigs • Bundles • Care</small>
+          </span>
+        </button>
+
+        <button class="catCard" data-filter="skincare" type="button">
+          <span class="catCard__bg catCard__bg--skin"></span>
+          <span class="catCard__body">
+            <strong>Skincare</strong>
+            <small>Glow • Hydration • SPF</small>
+          </span>
+        </button>
+
+        <button class="catCard" data-filter="makeup" type="button">
+          <span class="catCard__bg catCard__bg--makeup"></span>
+          <span class="catCard__body">
+            <strong>Makeup</strong>
+            <small>Soft glam • Everyday</small>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shop -->
+  <section id="shop" class="section section--tight">
+    <div class="container">
+      <div class="section__head section__head--row">
+        <div>
+          <h2>Shop</h2>
+          <p>Prices in ₦ • Add to cart and checkout on WhatsApp.</p>
+        </div>
+
+        <div class="filters" role="tablist" aria-label="Filters">
+          <button class="filter is-active" data-filter="all" type="button">All</button>
+          <button class="filter" data-filter="wears" type="button">Wears</button>
+          <button class="filter" data-filter="hair" type="button">Hair</button>
+          <button class="filter" data-filter="skincare" type="button">Skincare</button>
+          <button class="filter" data-filter="makeup" type="button">Makeup</button>
+        </div>
+      </div>
+
+      <div class="grid" id="productGrid" aria-live="polite"></div>
+
+      <div class="note">
+        <div>
+          <h3>Need help choosing?</h3>
+          <p>Message us on WhatsApp and we’ll recommend options.</p>
+        </div>
+        <button class="btn btn--primary" id="quickChatBtn" type="button">Chat on WhatsApp</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>Contact</h2>
+        <p>Fastest response on WhatsApp.</p>
+      </div>
+
+      <div class="contact">
+        <div class="contact__card">
+          <h3>Socials</h3>
+          <p>Follow for drops & videos.</p>
+          <div class="socialRow">
+            <a class="social" href="https://www.instagram.com/sophia_de_stylegod/" target="_blank" rel="noreferrer">Instagram</a>
+            <a class="social" href="https://www.tiktok.com/@sophia_stylegod" target="_blank" rel="noreferrer">TikTok</a>
+          </div>
+          
+        </div>
+
+        <form class="form" id="contactForm">
+          <div class="row">
+            <label>
+              Name
+              <input name="name" autocomplete="name" required placeholder="Your name" />
+            </label>
+            <label>
+              Phone
+              <input name="phone" autocomplete="tel" required placeholder="+234..." />
+            </label>
+          </div>
+
+          <label>
+            Delivery option
+            <select name="delivery" required>
+              <option value="" disabled selected>Choose…</option>
+              <option value="Lagos">Lagos</option>
+              <option value="Outside Lagos">Outside Lagos</option>
+            </select>
+          </label>
+
+          <label>
+            Location / Address
+            <input name="location" autocomplete="street-address" required placeholder="e.g. Lekki, Lagos" />
+          </label>
+
+          <label>
+            Message
+            <textarea name="message" rows="4" required placeholder="What do you want to buy?"></textarea>
+          </label>
+
+          <button class="btn btn--primary" type="submit">Send via WhatsApp</button>
+          <p class="muted">This opens WhatsApp with your message.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> Stylegod</p>
+      <p class="muted">WhatsApp checkout • Payment in Naira only</p>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="backdrop" id="backdrop" hidden></div>
+
+  <aside class="drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Cart" hidden>
+    <header class="drawer__head">
+      <h3>Your cart</h3>
+      <button class="iconbtn" id="closeCartBtn" type="button" aria-label="Close cart">✕</button>
+    </header>
+
+    <div class="drawer__body">
+      <div class="cartList" id="cartList"></div>
+
+      <div class="checkoutBox">
+        <h4>Checkout details</h4>
+
+        <label>
+          Delivery option
+          <select id="cartDelivery">
+            <option value="" disabled selected>Choose…</option>
+            <option value="Lagos">Lagos</option>
+            <option value="Outside Lagos">Outside Lagos</option>
+          </select>
+        </label>
+
+        <label>
+          Location / Address
+          <input id="cartLocation" placeholder="e.g. Ikeja, Lagos" />
+        </label>
+
+        <label>
+          Name
+          <input id="cartName" placeholder="Your name" />
+        </label>
+
+        <label>
+          Phone
+          <input id="cartPhone" placeholder="+234..." />
+        </label>
+
+        <p class="muted"><strong>Payment in Naira (₦).</strong> Delivery fee confirmed on WhatsApp.</p>
+      </div>
+
+      <div class="summary">
+        <div class="summary__row">
+          <span class="muted">Total</span>
+          <strong id="cartTotal">₦0</strong>
+        </div>
+
+        <button class="btn btn--primary" id="checkoutBtn" type="button">Checkout on WhatsApp</button>
+        <button class="btn btn--ghost" id="clearBtn" type="button">Clear cart</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

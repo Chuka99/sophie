@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stylegod • Admin Products</title>
+  <meta name="description" content="Add products to Stylegod shop" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .adminWrap{
+      padding: 2rem 0 3rem;
+    }
+    .adminGrid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 1.2rem;
+      align-items:start;
+    }
+    .adminPanel{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .adminPanel__head{
+      padding: 1rem 1rem .85rem;
+      border-bottom:1px solid var(--border);
+    }
+    .adminPanel__body{
+      padding: 1rem;
+    }
+    .adminPanel__head h2,
+    .adminPanel__head h3{
+      margin:0 0 .35rem;
+    }
+    .adminPanel__head p{
+      margin:0;
+      color: var(--muted);
+    }
+    .adminForm{
+      display:grid;
+      gap: .9rem;
+    }
+    .adminForm .row2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .8rem;
+    }
+    .adminForm label{
+      display:grid;
+      gap: .4rem;
+      font-weight: 700;
+      color: rgba(17,24,39,.92);
+    }
+    .adminForm input,
+    .adminForm select,
+    .adminForm textarea{
+      width:100%;
+      border:1px solid var(--border);
+      background:#fff;
+      color: var(--text);
+      border-radius: 14px;
+      padding: .85rem .95rem;
+      outline: none;
+      font: inherit;
+    }
+    .adminForm textarea{
+      min-height: 120px;
+      resize: vertical;
+    }
+    .adminForm input:focus,
+    .adminForm select:focus,
+    .adminForm textarea:focus{
+      border-color: rgba(0, 199, 232, .55);
+      box-shadow: 0 0 0 4px var(--focus);
+    }
+    .adminActions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.7rem;
+    }
+    .helper{
+      margin: 0;
+      color: var(--muted);
+      font-size: .94rem;
+      line-height: 1.55;
+    }
+    .previewBox{
+      border:1px dashed var(--border);
+      background: rgba(17,24,39,.02);
+      border-radius: 16px;
+      overflow:hidden;
+      min-height: 220px;
+      display:grid;
+      place-items:center;
+    }
+    .previewBox img{
+      width:100%;
+      max-height:320px;
+      object-fit:cover;
+      display:block;
+    }
+    .previewPlaceholder{
+      padding: 1rem;
+      text-align:center;
+      color: var(--muted);
+    }
+    .adminList{
+      display:grid;
+      gap:.8rem;
+    }
+    .adminItem{
+      border:1px solid var(--border);
+      border-radius: 16px;
+      padding: .8rem;
+      display:grid;
+      grid-template-columns: 88px 1fr;
+      gap: .8rem;
+      align-items:start;
+      background:#fff;
+    }
+    .adminItem img{
+      width:88px;
+      height:88px;
+      object-fit:cover;
+      border-radius: 12px;
+      border:1px solid var(--border);
+      background: rgba(17,24,39,.03);
+    }
+    .adminItem h4{
+      margin:0 0 .3rem;
+      font-size:1rem;
+    }
+    .adminMeta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.45rem;
+      margin:0 0 .4rem;
+    }
+    .adminMeta .badge{
+      display:inline-flex;
+      align-items:center;
+      padding:.35rem .55rem;
+      border-radius:999px;
+      background: rgba(17,24,39,.05);
+      border:1px solid var(--border);
+      font-size:.82rem;
+      font-weight:800;
+    }
+    .adminDesc{
+      margin:0;
+      color: var(--muted);
+      line-height:1.55;
+      font-size:.95rem;
+    }
+    .adminItemActions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.55rem;
+      margin-top: .65rem;
+    }
+    .emptyState{
+      border:1px dashed var(--border);
+      border-radius: 16px;
+      padding: 1rem;
+      color: var(--muted);
+      background: rgba(17,24,39,.02);
+    }
+    .topActions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.6rem;
+      align-items:center;
+    }
+
+    @media (max-width: 980px){
+      .adminGrid{
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 640px){
+      .adminForm .row2{
+        grid-template-columns: 1fr;
+      }
+      .adminItem{
+        grid-template-columns: 1fr;
+      }
+      .adminItem img{
+        width:100%;
+        height:220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <span class="dot" aria-hidden="true"></span>
+      <p>Admin • <strong>Manage shop products</strong></p>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html" aria-label="Go home">
+        <span class="logo__mark">
+          <img src="assets/images/logo.jpg" width="40" height="40" alt="Stylegod logo">
+        </span>
+        <span class="logo__text">
+          <strong>Stylegod</strong>
+          <small>Admin Products</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Main">
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html">Home</a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="iconbtn" href="shop.html">Open Shop</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="adminWrap">
+    <div class="container">
+      <div class="section__head">
+        <h2>Product Admin</h2>
+        <p>Add products here and they will appear automatically inside <strong>shop.html</strong>.</p>
+      </div>
+
+      <div class="adminGrid">
+        <section class="adminPanel">
+          <div class="adminPanel__head">
+            <h3 id="formTitle">Add new product</h3>
+            <p>Fill the form and save. You can use an image URL or upload an image from your device.</p>
+          </div>
+
+          <div class="adminPanel__body">
+            <form id="productForm" class="adminForm">
+              <input type="hidden" id="productId" />
+
+              <div class="row2">
+                <label>
+                  Product name
+                  <input id="productName" type="text" placeholder="e.g. Soft Glam Lip Kit" required />
+                </label>
+
+                <label>
+                  Category
+                  <select id="productCategory" required>
+                    <option value="">Choose category</option>
+                    <option value="wears">Wears</option>
+                    <option value="hair">Hair</option>
+                    <option value="skincare">Skincare</option>
+                    <option value="makeup">Makeup</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="row2">
+                <label>
+                  Price (₦)
+                  <input id="productPrice" type="number" min="0" step="1" placeholder="e.g. 25000" required />
+                </label>
+
+                <label>
+                  Image URL
+                  <input id="productImageUrl" type="url" placeholder="https://example.com/product.jpg" />
+                </label>
+              </div>
+
+              <label>
+                Upload image
+                <input id="productImageFile" type="file" accept="image/*" />
+              </label>
+
+              <label>
+                Description
+                <textarea id="productDesc" placeholder="Short product description" required></textarea>
+              </label>
+
+              <div class="previewBox" id="previewBox">
+                <div class="previewPlaceholder">Image preview will appear here</div>
+              </div>
+
+              <p class="helper">
+                Uploaded images are saved into your browser for this device. For a real multi-device admin dashboard, you would need a backend/database.
+              </p>
+
+              <div class="adminActions">
+                <button class="btn btn--primary" type="submit" id="saveBtn">Save product</button>
+                <button class="btn btn--ghost" type="button" id="resetBtn">Reset form</button>
+                <button class="btn btn--ghost" type="button" id="exportBtn">Export JSON</button>
+                <button class="btn btn--ghost" type="button" id="clearAllBtn">Clear all custom products</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="adminPanel">
+          <div class="adminPanel__head">
+            <h3>Custom products</h3>
+            <p>These are the products added from this admin page.</p>
+          </div>
+
+          <div class="adminPanel__body">
+            <div class="topActions" style="margin-bottom: .9rem;">
+              <a class="btn btn--primary" href="shop.html">View shop page</a>
+            </div>
+            <div id="productList" class="adminList"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> Stylegod</p>
+      <p class="muted"><a href="shop.html">Back to Shop</a></p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

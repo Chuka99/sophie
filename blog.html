@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stylegod • Blog</title>
+  <meta name="description" content="Stylegod Blog — Wears, Hair, Skincare, Makeup." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <span class="dot" aria-hidden="true"></span>
+      <p>Blog • <strong>Style tips + beauty tips</strong></p>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html" aria-label="Go to home">
+        <span class="logo__mark">SG</span>
+        <span class="logo__text">
+          <strong>Stylegod</strong>
+          <small>Beauty & Luxury</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Main">
+        <a href="index.html#shop">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="iconbtn" href="https://www.instagram.com/sophia_de_stylegod/" target="_blank" rel="noreferrer">IG</a>
+        <a class="iconbtn" href="https://www.tiktok.com/@sophia_stylegod" target="_blank" rel="noreferrer">TT</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section__head section__head--row">
+        <div>
+          <h2>Blog</h2>
+          <p>Wears • Hair • Skincare • Makeup</p>
+        </div>
+
+        <div class="filters" role="tablist" aria-label="Blog categories">
+          <button class="filter is-active" type="button" data-cat="all">All</button>
+          <button class="filter" type="button" data-cat="Wears">Wears</button>
+          <button class="filter" type="button" data-cat="Hair">Hair</button>
+          <button class="filter" type="button" data-cat="Skincare">Skincare</button>
+          <button class="filter" type="button" data-cat="Makeup">Makeup</button>
+        </div>
+      </div>
+
+      <div class="blogGridPage" id="blogList"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> Stylegod</p>
+      <p class="muted"><a href="index.html">Back to Shop</a></p>
+    </div>
+  </footer>
+
+  <!-- Blog styles (small add-on) -->
+  <style>
+    .blogGridPage{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .postCard{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+      cursor:pointer;
+      transition: transform .15s ease, border-color .15s ease;
+    }
+    .postCard:hover{ transform: translateY(-2px); border-color: rgba(17,24,39,.18); }
+    .postCard__cover{
+      height: 170px;
+      background: linear-gradient(135deg, rgba(255,47,191,.25), rgba(106,61,255,.18), rgba(0,199,232,.18));
+      border-bottom:1px solid rgba(17,24,39,.08);
+    }
+    .postCard__cover img{ width:100%; height:100%; object-fit: cover; display:block; }
+    .postCard__body{ padding: 1rem; }
+    .postCard__meta{ color: var(--muted); font-weight: 800; font-size: .9rem; margin-bottom: .35rem; }
+    .postCard__title{ margin:0 0 .4rem; font-size: 1.1rem; }
+    .postCard__excerpt{ margin:0; color: var(--muted); line-height: 1.55; }
+    @media (max-width: 980px){ .blogGridPage{ grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px){ .blogGridPage{ grid-template-columns: 1fr; } }
+  </style>
+
+  <script src="blog-data.js"></script>
+  <script>
+    const yearEl = document.getElementById("year");
+    yearEl.textContent = new Date().getFullYear();
+
+    const listEl = document.getElementById("blogList");
+    let cat = "all";
+
+    function formatDate(iso){
+      try{
+        const d = new Date(iso + "T00:00:00");
+        return d.toLocaleDateString("en-GB", { day:"2-digit", month:"short", year:"numeric" });
+      }catch{ return iso; }
+    }
+
+    function render(){
+      const posts = (window.BLOG_POSTS || []).filter(p => cat === "all" ? true : p.category === cat);
+
+      listEl.innerHTML = posts.map(p => {
+        const cover = p.cover ? `<img src="${p.cover}" alt="${p.title}" loading="lazy">` : "";
+        return `
+          <article class="postCard" onclick="location.href='post.html?id=${encodeURIComponent(p.id)}'">
+            <div class="postCard__cover">${cover}</div>
+            <div class="postCard__body">
+              <div class="postCard__meta">${p.category} • ${formatDate(p.date)}</div>
+              <h3 class="postCard__title">${p.title}</h3>
+              <p class="postCard__excerpt">${p.excerpt}</p>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    document.querySelectorAll(".filter").forEach(b => {
+      b.addEventListener("click", () => {
+        document.querySelectorAll(".filter").forEach(x => x.classList.remove("is-active"));
+        b.classList.add("is-active");
+        cat = b.dataset.cat;
+        render();
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>
